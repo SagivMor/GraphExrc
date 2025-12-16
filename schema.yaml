@@ -1,0 +1,212 @@
+id: https://example.org/security-graph
+name: security_graph
+title: Security Graph Ontology
+description: |
+  A simple ontology for security graph data modeling.
+
+  This schema can be used to generate typed models in Python or TypeScript.
+  See https://linkml.io/linkml/generators/index.html for code generators.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  sg: https://example.org/security-graph/
+
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+
+  # Base class for all nodes
+  Node:
+    abstract: true
+    description: Base class for all graph nodes
+    attributes:
+      id:
+        identifier: true
+        description: Unique identifier for the node
+      name:
+        description: Human-readable name
+      label:
+        description: Node type label (e.g., Server, User, Database)
+
+  # Infrastructure
+  Server:
+    is_a: Node
+    description: A compute instance or virtual machine
+    attributes:
+      ip_address:
+        description: IP address of the server
+      is_public:
+        range: boolean
+        description: Whether the server is publicly accessible
+      os:
+        description: Operating system
+
+  Database:
+    is_a: Node
+    description: A database instance
+    attributes:
+      engine:
+        description: Database engine (e.g., PostgreSQL, MySQL)
+      is_encrypted:
+        range: boolean
+        description: Whether data at rest is encrypted
+
+  StorageBucket:
+    is_a: Node
+    description: Object storage container
+    attributes:
+      is_public:
+        range: boolean
+        description: Whether the bucket is publicly accessible
+      encryption:
+        description: Encryption type if any
+
+  Firewall:
+    is_a: Node
+    description: Network firewall or security group
+    attributes:
+      allows_ingress_from:
+        description: Source CIDR or IP allowed
+      allows_ports:
+        description: Ports allowed (e.g., "22,80,443")
+
+  Endpoint:
+    is_a: Node
+    description: API or network endpoint
+    attributes:
+      url:
+        description: Endpoint URL
+      is_authenticated:
+        range: boolean
+        description: Whether authentication is required
+
+  # Identity
+  User:
+    is_a: Node
+    description: A human user identity
+    attributes:
+      email:
+        description: User email address
+      is_admin:
+        range: boolean
+        description: Whether user has admin privileges
+
+  ServiceAccount:
+    is_a: Node
+    description: A machine/service identity
+    attributes:
+      service:
+        description: Service this account belongs to
+
+  Group:
+    is_a: Node
+    description: A group of users
+    attributes:
+      member_count:
+        range: integer
+        description: Number of members in the group
+
+  Role:
+    is_a: Node
+    description: A permission role
+    attributes:
+      permissions:
+        multivalued: true
+        description: List of permissions granted by this role
+
+  Credential:
+    is_a: Node
+    description: Authentication credential (password, key, token)
+    attributes:
+      credential_type:
+        description: Type of credential (password, api_key, ssh_key, token)
+      is_rotated:
+        range: boolean
+        description: Whether credential has been rotated recently
+
+  # Data
+  Secret:
+    is_a: Node
+    description: Sensitive configuration value
+    attributes:
+      secret_type:
+        description: Type of secret (api_key, password, certificate)
+
+  SensitiveData:
+    is_a: Node
+    description: Sensitive data (PII, financial, health)
+    attributes:
+      data_classification:
+        description: Classification level (PII, FINANCIAL, HEALTH, CONFIDENTIAL)
+      record_count:
+        range: integer
+        description: Number of records
+
+  # Code
+  Repository:
+    is_a: Node
+    description: Source code repository
+    attributes:
+      url:
+        description: Repository URL
+      default_branch:
+        description: Default branch name
+
+  CodeFile:
+    is_a: Node
+    description: A source code file
+    attributes:
+      path:
+        description: File path within repository
+      language:
+        description: Programming language
+
+  # Security
+  Vulnerability:
+    is_a: Node
+    description: A security vulnerability
+    attributes:
+      cve_id:
+        description: CVE identifier if applicable
+      severity:
+        description: Severity level (LOW, MEDIUM, HIGH, CRITICAL)
+      description:
+        description: Description of the vulnerability
+
+  # Edge/Relationship
+  Edge:
+    description: A relationship between two nodes
+    attributes:
+      id:
+        identifier: true
+        description: Unique edge identifier
+      source:
+        required: true
+        description: Source node ID
+      target:
+        required: true
+        description: Target node ID
+      type:
+        required: true
+        description: |
+          Relationship type. Common types:
+          - HAS_VULNERABILITY: Entity has a security vulnerability
+          - STORES: Entity stores data or credentials
+          - CONTAINS: Container holds items
+          - GRANTS_ACCESS: Credential provides access to resource
+          - HAS_ROLE: Identity has a role
+          - CAN_ACCESS: Role/identity can access resource
+          - ALLOWS: Firewall allows traffic to target
+          - CONNECTS_TO: Network or data connection
+          - TRUSTS: Trust relationship between entities
+          - OWNS: Ownership relationship
+          - MEMBER_OF: Membership in group
+          - CAN_ASSUME: Can assume identity/role
+          - READS: Can read from data source
+          - EXPOSES: Makes available externally
+          - DEPLOYS_TO: Code deploys to infrastructure
+      properties:
+        description: Additional edge properties as JSON object
