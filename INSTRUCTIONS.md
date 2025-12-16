@@ -1,30 +1,82 @@
-# Security Graph Explorer
+# Security Graph – Full Stack
 
-## Context
+Full-stack application for visualizing a security graph and attack paths.
 
-We store cloud infrastructure data in a graph database (Neptune). This data includes assets (servers, databases, users, credentials, etc.) and calculated attack paths that show how an attacker could move through the system.
+**Frontend:** React + TypeScript + Vite + React Flow  
+**Backend:** API server providing graph and attack-path data
 
-## Your Task
+---
 
-Build an application that visualizes this data.
+## Project Structure
 
-## Data
+```text
+/
+├── security-graph-ui/   # React application
+├── backend/             # API server
+└── README.md
+```
 
-To make this exercise more straightforward, the data is in an S3 bucket. Treat it as though you're calling our internal graph database API - and make sure you apply good architural principals given that assumption.
+---
 
-- **Assets**: `https://coding-test-graph-data.s3.eu-central-1.amazonaws.com/assets.json`
-- **Attack Paths**: `https://coding-test-graph-data.s3.eu-central-1.amazonaws.com/attack-paths.json`
+## Frontend
 
-A [LinkML](https://linkml.io/) schema (`schema.yaml`) is included describing the data types.  Note that this schema can be compiled into object models in many different languages: [Generators](https://linkml.io/linkml/generators/index.html)
+### Setup
 
-## Guidelines
+```bash
+cd security-graph-ui
+npm install
+```
 
-- Use any tech stack
-- Use of AI to write code is encouraged, but remember that you are being evaluated also on general code quality
-- Spend 4-6 hours max
-- Include a README with setup instructions
+Create a `.env` file:
 
+```env
+VITE_API_BASE_URL=http://localhost:3001/api
+```
 
+Run the development server:
 
-Dont foreget:
-- Include a README with setup instructions
+```bash
+npm run dev
+```
+
+Frontend will be available at:
+
+```
+http://localhost:5173
+```
+
+---
+
+## Backend
+
+### Setup
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+Backend will be available at:
+
+```
+http://localhost:3001
+```
+
+---
+
+## Notes
+
+- Frontend communicates with the backend via `VITE_API_BASE_URL`
+- Graph layout is calculated using Dagre
+- Nodes and edges are rendered using custom React Flow components
+- Styling is handled via SCSS tokens (no inline UI logic in orchestration code)
+
+---
+
+## Requirements
+
+- Node.js 18+
+- npm / pnpm / yarn
+
+---
