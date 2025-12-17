@@ -1,9 +1,26 @@
+/* =========================================================
+   Graph – Typography
+   ========================================================= */
+
+/* Edge */
 $graph-edge-font-main: 10px;
 $graph-edge-font-sub: 9px;
 $graph-edge-font-main-weight: 600;
 
-
+/* Node */
 $graph-node-font-main: 14px;
 $graph-node-font-sub: 11px;
 $graph-node-font-type: 8px;
 $graph-node-font-main-weight: 600;
+
+
+/* =========================================================
+   Graph – Colors
+   ========================================================= */
+
+/* Node */
+$graph-node-bg-default: #ffffff;
+$graph-node-bg-active: #eff6ff;
+
+$graph-node-border-default: #d1d5db;
+$graph-node-border-active: #2563eb;
