@@ -2,7 +2,7 @@ export type Node = {
   id: string;
   label: string;
   name: string;
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 export type Edge = {
