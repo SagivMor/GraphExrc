@@ -1,33 +1,33 @@
 @use "@/styles/graph" as *;
 
-.graph-edge{
-    transform: translate(-50%, -50%);
-    background: #e4e4e4ff;
-    opacity: 1;
-    border: 1px solid white;
-    border-radius: 8;
-    padding: 4px 15px;
-    color: #111827;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    line-height: 1.2;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    white-space: nowrap;
-    user-select: none;
+.graph-edge {
+  transform: translate(-50%, -50%);
+  background: #e4e4e4ff;
+  opacity: 1;
+  border: 1px solid white;
+  border-radius: 8;
+  padding: 4px 15px;
+  color: #111827;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
+  user-select: none;
 
-    &.muted{
-        opacity: 0.35;
-    }
+  &.muted {
+    opacity: 0.35;
+  }
 
-    .label-type{
-        font-weight: $graph-edge-font-main-weight;
-        font-size: $graph-edge-font-main;
-    }
-    
-    .label-id{
-        font-size: $graph-edge-font-sub;
-        color: #6b7280;
-        margin-top: 2;
-    }
+  .label-type {
+    font-weight: $graph-edge-font-main-weight;
+    font-size: $graph-edge-font-main;
+  }
+
+  .label-id {
+    font-size: $graph-edge-font-sub;
+    color: #6b7280;
+    margin-top: 2;
+  }
 }

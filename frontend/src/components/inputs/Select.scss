@@ -1,16 +1,14 @@
 .select-input {
   margin: 8px;
-  padding: 6px 50px  6px 20px;
+  padding: 6px 50px 6px 20px;
   border-radius: 6px;
   border: 1px solid #d1d5db;
   background: white;
   font-size: 14px;
   color: #111827;
-    &:focus {
-      outline: none;
-      border-color: #2563eb;
-      box-shadow: 0 0 0 1px #2563eb;
-    }
+  &:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px #2563eb;
+  }
 }
-
-

@@ -1,5 +1,5 @@
 import { GraphView } from "./components/graph/GraphView";
-import "./App.css"
+import "./App.css";
 
 export default function App() {
   return (
