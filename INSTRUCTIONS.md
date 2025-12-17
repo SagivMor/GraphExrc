@@ -11,8 +11,8 @@ Full-stack application for visualizing a security graph and attack paths.
 
 ```text
 /
-├── security-graph-ui/   # React application
-├── backend/             # API server
+├── frontend/       # React application
+├── backend/        # API server
 └── README.md
 ```
 
@@ -23,7 +23,7 @@ Full-stack application for visualizing a security graph and attack paths.
 ### Setup
 
 ```bash
-cd security-graph-ui
+cd frontend
 npm install
 ```
 
