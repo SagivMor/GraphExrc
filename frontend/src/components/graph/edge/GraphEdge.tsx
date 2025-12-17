@@ -14,8 +14,6 @@ export function GraphEdge({sourceX, sourceY, targetX, targetY, data, style, mark
   const [path, labelX, labelY] = getBezierPath({sourceX, sourceY, targetX, targetY,});
   const { id, muted, type } = data ?? {};
 
-  // todo(sagiv): Add data model
-
   return (
     <>
       <path d={path} fill="none" style={style} markerEnd={markerEnd}/>
