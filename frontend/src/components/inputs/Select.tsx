@@ -1,4 +1,4 @@
-import "./Select.scss"
+import "./Select.scss";
 
 type Option<T extends string | number> = {
   value: T;
@@ -12,18 +12,9 @@ type Props<T extends string | number> = {
   onChange: (value: T | "") => void;
 };
 
-export function Select<T extends string | number>({
-  value,
-  placeholder = "Select",
-  options,
-  onChange,
-}: Props<T>) {
+export function Select<T extends string | number>({ value, placeholder = "Select", options, onChange }: Props<T>) {
   return (
-    <select
-      className="select-input"
-      value={value ?? ""}
-      onChange={(e) => onChange(e.target.value as T | "")}
-    >
+    <select className="select-input" value={value ?? ""} onChange={(e) => onChange(e.target.value as T | "")}>
       <option value="">{placeholder}</option>
 
       {options.map((opt) => (

@@ -17,9 +17,7 @@ export default defineConfig({
       "@helpers": path.resolve(__dirname, "src/helpers"),
       "@components": path.resolve(__dirname, "src/components"),
       "@styles": path.resolve(__dirname, "src/styles"),
-      
     },
-    
   },
 
   css: {
@@ -29,7 +27,7 @@ export default defineConfig({
       },
     },
   },
-    server: {
+  server: {
     watch: {
       ignored: ["**/.env*"],
     },

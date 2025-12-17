@@ -7,8 +7,8 @@ export function useAttackHighlight() {
   const [attackPaths, setAttackPaths] = useState<AttackPathListItemDTO[]>([]);
   const [activeNodeIds, setActiveNodeIds] = useState<Set<string>>(new Set());
   const [activeEdgeKeys, setActiveEdgeKeys] = useState<Set<string>>(new Set());
-  const [selectedAttackPathId, setSelectedAttackPathId] = useState<string|null>(null)
-    
+  const [selectedAttackPathId, setSelectedAttackPathId] = useState<string | null>(null);
+
   useEffect(() => {
     graphApi.getAttackPaths().then(setAttackPaths);
   }, []);
@@ -17,15 +17,13 @@ export function useAttackHighlight() {
     if (!id) {
       setActiveNodeIds(new Set());
       setActiveEdgeKeys(new Set());
-      setSelectedAttackPathId(null)
+      setSelectedAttackPathId(null);
       return;
     }
-    setSelectedAttackPathId(id)
+    setSelectedAttackPathId(id);
 
     graphApi.getAttackPath(id).then((path) => {
-      const edgesKeys = new Set(
-        path.edges.map((e: GraphEdgeDTO) => generateEdgeKey(e))
-      );
+      const edgesKeys = new Set(path.edges.map((e: GraphEdgeDTO) => generateEdgeKey(e)));
       const nodes = new Set<string>();
 
       path.edges.forEach((e: GraphEdgeDTO) => {
@@ -43,6 +41,6 @@ export function useAttackHighlight() {
     activeNodeIds,
     activeEdgeKeys,
     selectAttackPath,
-    selectedAttackPathId
+    selectedAttackPathId,
   };
 }

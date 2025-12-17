@@ -8,14 +8,13 @@ type GraphNodeData = {
   id: string;
 };
 
-
 export function GraphNode({ data }: NodeProps<GraphNodeData>) {
   const { type, name, id } = data;
 
   return (
     <div className="graph-node">
       {/* ENTRYIES */}
-      <Handle type="target" position={Position.Left} isConnectable={false}/>
+      <Handle type="target" position={Position.Left} isConnectable={false} />
 
       <div className="title">{name}</div>
 
@@ -24,7 +23,7 @@ export function GraphNode({ data }: NodeProps<GraphNodeData>) {
       <div className="type">({type})</div>
 
       {/* EXITS */}
-      <Handle type="source" position={Position.Right} isConnectable={false}/>
+      <Handle type="source" position={Position.Right} isConnectable={false} />
     </div>
   );
 }
